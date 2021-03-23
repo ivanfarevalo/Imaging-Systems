@@ -35,3 +35,20 @@ venv.bak/
 # PyBuilder
 .pybuilder/
 target/
+
+# Mac
+*.DS_*
+
+* Data
+.png
+.mp4
+.avi
+.jpg
+.jpeg
+.m4v
+.npy
+.doc
+.mp4
+.mov
+
+
