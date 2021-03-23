@@ -27,8 +27,11 @@ class Wave_Field():
         def wave_field_tf(self, x, y):
 
             r = np.sqrt((x - self.xshift) ** 2 + (y - self.yshift) ** 2)
+
+            # amplitude = 0
+
             if self.phase_only and self.amplitude:
-                pass
+                amplitude = self.amplitude
             elif self.phase_only:
                 amplitude = 1
             elif self.amplitude:
@@ -40,13 +43,13 @@ class Wave_Field():
 
         def generate_wave_field_pattern(self, xlim=None, ylim=None):
 
-            if xlim and ylim:
+            x = y = np.arange(-self.radius, self.radius + self.sample_spacing, self.sample_spacing)
+            if xlim:
                 assert (isinstance(xlim, (tuple, list, np.ndarray)))
-                assert (isinstance(ylim, (tuple, list, np.ndarray)))
                 x = np.arange(xlim[0], xlim[1] + self.sample_spacing, self.sample_spacing)
+            if ylim:
+                assert (isinstance(ylim, (tuple, list, np.ndarray)))
                 y = np.arange(ylim[0], ylim[1] + self.sample_spacing, self.sample_spacing)
-            else:
-                x = y = np.arange(-self.radius, self.radius + self.sample_spacing, self.sample_spacing)
 
             X, Y = np.meshgrid(x, y)
             wave_field_pattern = self.v_wave_field_tf(X, np.rot90(Y, 2))  # Y because of numpy indexing start from top left.

@@ -38,6 +38,7 @@ def multi_frequency_reconstruction(wavelengths):
 
 
 def superimpose_reconstructions(directory, vid_size, reconstruction_snapshots=None, video_name='reconstructed_image_video', FPS=2):
+    # Add reconstructed images from each wavelength and create video.
     first_im_flag = True
     superimposed_reconstructions = np.zeros((10, 10)) # Final reconstruction image initialization
 
@@ -80,15 +81,21 @@ def superimpose_reconstructions(directory, vid_size, reconstruction_snapshots=No
 
 if __name__ == "__main__":
 
-    wavelengths = 40 / (np.arange(1,41) + 20)
-    start_time = time.time()
+    input = int(input("Options: \n1) Generate reconstruction data\n2) Generate reconstruction video\nnote: Must run 1) before 2)\n\nInput Option: "))
+    if input == 1:
+        start_time = time.time()
+        # Simulation settings hardcoded in reconstruction function to use multiprocessing
+        wavelengths = 40 / (np.arange(1,41) + 20)
+        multi_frequency_reconstruction(wavelengths)
+        duration = time.time() - start_time
+        print(f"Duration {duration} seconds")
 
-    # multi_frequency_reconstruction(wavelengths)
-
-    from cv2 import VideoWriter, VideoWriter_fourcc # Multiprocessing module raises error if imported before running
-    root_dir = os.path.join(os.path.dirname(__file__), 'data/reconstructed_image_data')
-    superimpose_reconstructions(root_dir, (241,241), reconstruction_snapshots=[10,20,30,40], video_name='reconstructed_image')
-    root_dir = os.path.join(os.path.dirname(__file__), 'data/reconstructed_spectrum_data')
-    superimpose_reconstructions(root_dir, (512,512), reconstruction_snapshots=[10,20,30,40], video_name='reconstructed_spectrum')
-    duration = time.time() - start_time
-    print(f"Duration {duration} seconds")
+    elif input == 2:
+        start_time = time.time()
+        from cv2 import VideoWriter, VideoWriter_fourcc # Multiprocessing module raises error if imported before running
+        root_dir = os.path.join(os.path.dirname(__file__), 'data/reconstructed_image_data')
+        superimpose_reconstructions(root_dir, (241,241), reconstruction_snapshots=[10,20,30,40], video_name='reconstructed_image')
+        root_dir = os.path.join(os.path.dirname(__file__), 'data/reconstructed_spectrum_data')
+        superimpose_reconstructions(root_dir, (512,512), reconstruction_snapshots=[10,20,30,40], video_name='reconstructed_spectrum')
+        duration = time.time() - start_time
+        print(f"Duration {duration} seconds")
