@@ -16,31 +16,6 @@ def run_experiment(xy_coordinates, pat_title, spec_title, amplitude=None, wavele
     plt.show()
 
 
-
-# def run_prob_2(greens_amp=None, wavelength=1,relative_radius=30,relative_sample_spacing=1/4, pat_title=None, spec_title=None, data_plane=None):
-
-    # Plot wave field pattern
-    # first_pt_flag = True
-    # for x,y in np.array([[0,10], [10,0], [0,-10], [-10,0], [-8,-6], [8,-6]]):
-    #     wave_field_pattern = generate_wave_field_pattern(relative_radius, relative_sample_spacing, wavelength,
-    #                                                      xshift=x, yshift=y, greens_amp=greens_amp, data_plane=data_plane)
-    #     if first_pt_flag:
-    #         wave_field_6pt_pattern = wave_field_pattern
-    #         first_pt_flag = False
-    #     else:
-    #         wave_field_6pt_pattern += wave_field_pattern
-    #
-    # pattern_title = pat_title if pat_title else '2D Coherent Wave-field Pattern \nfor 6 superimposed Point Sources'
-    # formatted_plot(np.abs(wave_field_6pt_pattern), title=pattern_title,
-    #          xlabel='X position', ylabel='Y position')
-    #
-    # # Plot wave field spectrum
-    # wave_field_spectrum_plot = np.fft.fftshift(np.fft.fft2(wave_field_6pt_pattern, s=(512, 512)))
-    # spectrum_title = spec_title if spec_title else '2D Fourier Spectrum of the Coherent Wave-field'
-    # formatted_plot(np.abs(wave_field_spectrum_plot), title=spectrum_title,
-    #          xlabel='$f_x$', ylabel='$f_y$')
-    # plt.show()
-
     # # Alternative: create wavefield by convolving point sources with impulse response.
     # source = np.zeros(wave_field_pattern.shape)
     # for x, y in np.array([[0, 10], [10, 0], [0, -10], [-10, 0], [-8, -6], [8, -6]]):
@@ -106,7 +81,6 @@ if __name__ == '__main__':
         run_experiment(xy_coordinates=sources_xy_coordinates, pat_title=pattern_title, spec_title=spectrum_title,
                        wavelength=sources_wavelengths, amplitude=1)
     elif input == 5:
-
         for s in [1, 2, 4]:
             # Single coherent point source at origin
             sources_xy_coordinates = np.array([[0, 0]])
@@ -128,9 +102,7 @@ if __name__ == '__main__':
             spectrum_title = "Point Source Wave-field\n Spectrum with different wavelengths and \n{}$\Lambda_0$ sample spacing".format(1/s)
             run_experiment(xy_coordinates=sources_xy_coordinates, pat_title=pattern_title, spec_title=spectrum_title,
                            wavelength=sources_wavelengths, sample_spacing=1/s)
-
     elif input == 6:
-
         for r in [15, 30, 60]:
             # Single coherent point source at origin
             sources_xy_coordinates = np.array([[0, 0]])

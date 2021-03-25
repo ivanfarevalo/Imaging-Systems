@@ -61,9 +61,8 @@ class Wave_Field():
             wave_field_pattern = self.v_wave_field_tf(coordinates[:,0], coordinates[:,1])
             return np.nan_to_num(wave_field_pattern)
 
-    def generate_composite_wave_field_pattern(self, xy_coordinates, wavelength, amplitude=None, xlim=None, ylim=None,
-                                              pattern_title="Wave Filed Pattern", sample_mode=False,
-                                              sample_coordinates=None, plot=True):
+    def generate_composite_wave_field_pattern(self, xy_coordinates, wavelength, receiver=None, amplitude=None, xlim=None, ylim=None,
+                                              pattern_title="Wave Filed Pattern", sample_mode=False, plot=True):
 
         first_pt_flag = True
         for i, xy in enumerate(np.asarray(xy_coordinates).reshape(-1,2)):
@@ -74,13 +73,16 @@ class Wave_Field():
                                              amplitude=a, phase_only=self.phase_only)
 
             if sample_mode:
-                assert(sample_coordinates is not None)
-                sample_pattern = point_source.sample_wave_field(coordinates=sample_coordinates)
+                assert(receiver.receiver_coordinates is not None)
+                sample_pattern = point_source.sample_wave_field(coordinates=receiver.receiver_coordinates)
                 if first_pt_flag:
-                    self.sampled_wavefield = sample_pattern
+                    # self.sampled_wavefield = sample_pattern
+                    receiver.sampled_wavefield = sample_pattern
                     first_pt_flag = False
                 else:
-                    self.sampled_wavefield += sample_pattern
+                    # self.sampled_wavefield += sample_pattern
+                    receiver.sampled_wavefield += sample_pattern
+
             else:
                 wave_field_pattern = point_source.generate_wave_field_pattern(xlim, ylim)
 

@@ -9,8 +9,7 @@ from Lab2.image_reconstruction import LinearReceiver
 
 def reconstruction(wavelength):
 
-    receiver = LinearReceiver(y_int=-60, xlim=(-30, 30), slope=0)
-
+    receiver = LinearReceiver(y_int=-60, xlim=(-30, 30), slope=0, receiver_spacing=1)
     sources_xy_coordinates = np.array([[0, 10], [10, 0], [0, -10], [-10, 0], [-8, -6], [8, -6]])
     radius = 30
     sample_spacing = 1 / 4
@@ -18,9 +17,9 @@ def reconstruction(wavelength):
     receiver.sample_wave_field(sources_xy_coordinates, source_WF, wavelength)
 
     # Reconstruct image with given wavelength
-    ax = receiver.reconstruct_image(source_WF, wavelength, pattern_title=f"Reconstructed Source Region\n for $\lambda = {round(wavelength,3)}\lambda_0$")
+    ax = receiver.reconstruct_image(wavelength, radius, sample_spacing, phase_only=False, pattern_title=f"Reconstructed Source Region\n for $\lambda = {round(wavelength,3)}\lambda_0$")
     # Save image png and data npy matrix
-    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+    data_dir = os.path.join(os.path.dirname(__file__), 'data2')
     plt.savefig("{}/{}_lambda.png".format(os.path.join(data_dir, 'reconstructed_images'), wavelength))
     np.save("{}/{}_lambda".format(os.path.join(data_dir, 'reconstructed_image_data'), wavelength),
             receiver.reconstructed_wavefield.composite_wave_field_pattern)
@@ -86,7 +85,8 @@ if __name__ == "__main__":
         start_time = time.time()
         # Simulation settings hardcoded in reconstruction function to use multiprocessing
         wavelengths = 40 / (np.arange(1,41) + 20)
-        multi_frequency_reconstruction(wavelengths)
+        # multi_frequency_reconstruction(wavelengths)
+        multi_frequency_reconstruction([40, 35])
         duration = time.time() - start_time
         print(f"Duration {duration} seconds")
 
