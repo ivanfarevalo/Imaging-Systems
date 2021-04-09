@@ -18,7 +18,8 @@ field experiments and applications. The technical details are elaborated on "Aco
 
 4. **Lab4/multifrequency_reconstruction.py:** Investigates multi-frequency image formation by backwards propagation and its effect on the range resolution.\
 [Link to Lab4 report](https://github.com/ivanfarevalo/Imaging-Systems/blob/master/Lab4/Ivan_Arevalo_Lab_4_Report.pdf)\
-Image reconstruction video: https://youtu.be/79yrmQFWizU. Spectra reconstruction video: https://youtu.be/43n-PnthEfs
+Image reconstruction video: https://youtu.be/79yrmQFWizU. \
+Spectra reconstruction video: https://youtu.be/43n-PnthEfs \
 [![Reconstruction](http://img.youtube.com/vi/79yrmQFWizU/1.jpg)](https://youtu.be/79yrmQFWizU "Reconstruction") [![Reconstruction](http://img.youtube.com/vi/79yrmQFWizU/2.jpg)](https://youtu.be/79yrmQFWizU "Reconstruction") [![Reconstruction](http://img.youtube.com/vi/79yrmQFWizU/3.jpg)](https://youtu.be/79yrmQFWizU "Reconstruction")\
 [![Reconstruction](http://img.youtube.com/vi/43n-PnthEfs/1.jpg)](https://youtu.be/43n-PnthEfs"Reconstruction") [![Reconstruction](http://img.youtube.com/vi/43n-PnthEfs/3.jpg)](https://youtu.be/43n-PnthEfs"Reconstruction") [![Reconstruction](http://img.youtube.com/vi/43n-PnthEfs/2.jpg)](https://youtu.be/43n-PnthEfs"Reconstruction")
 
